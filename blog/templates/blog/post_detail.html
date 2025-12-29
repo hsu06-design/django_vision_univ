@@ -1,0 +1,15 @@
+<h1>{{ post.title }}</h1>
+<p>{{ post.content }}</p>
+
+<hr>
+
+<h2>📝 Notes</h2>
+
+{% for note in post.notes.all %}
+  <div style="background:#f3f4f6; padding:15px; border-radius:10px; margin-bottom:10px;">
+    <strong>{{ note.title }}</strong>
+    <p>{{ note.content }}</p>
+  </div>
+{% empty %}
+  <p>No notes for this post.</p>
+{% endfor %}

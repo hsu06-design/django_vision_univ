@@ -1,0 +1,66 @@
+{% extends "blog/base.html" %}
+{% block title %}Home | My Blog{% endblock %}
+
+{% block content %}
+
+<!-- PROFILE CARD -->
+<div class="card shadow-lg mb-5">
+  <div class="card-body p-4 p-md-5">
+    <div class="row align-items-center g-4">
+
+      <!-- Profile Image -->
+      <div class="col-md-3 text-center">
+        <img
+          src="https://img.freepik.com/free-vector/cute-children-student-school-education-concept-cartoon-vector-illustration_56104-2844.jpg?semt=ais_hybrid&w=740&q=80"
+          class="rounded-circle shadow"
+          style="width: 150px; height: 150px; object-fit: cover;"
+          alt="Profile"
+        >
+      </div>
+
+      <!-- Info -->
+      <div class="col-md-9">
+        <h1 class="fw-bold mb-1">Hsu Hsu</h1>
+        <p class="text-primary fw-semibold mb-2">
+          Django Learner · Python Developer · Student
+        </p>
+        <p class="text-muted mb-0">
+          I write about what I learn every day — Python, Django, projects,
+          mistakes, and small ideas worth remembering.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div style="margin-bottom: 20px;">
+  <a href="/admin/blog/post/add/" class="btn">
+    ➕ Create New Post
+  </a>
+
+  <a href="/admin/notes/note/add/" class="btn secondary">
+    📝 Create Note
+  </a>
+</div>
+
+
+<!-- POSTS -->
+<h3 class="fw-bold mb-4">Latest Posts</h3>
+
+{% for post in posts %}
+<div class="card shadow-sm mb-3">
+  <div class="card-body">
+    <h4 class="fw-semibold">{{ post.title }}</h4>
+    <p class="text-muted small mb-2">{{ post.created_at }}</p>
+    <p>{{ post.content|truncatewords:30 }}</p>
+  </div>
+</div>
+{% empty %}
+<div class="alert alert-info">
+  No posts yet. Create one in the admin!
+</div>
+{% endfor %}
+
+{% endblock %}
+
