@@ -1,55 +1,138 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <title>{% block title %}My Blog{% endblock %}</title>
+    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom colors -->
-  <style>
-    body {
-      background: linear-gradient(135deg, #f8f9ff, #eef1ff);
-      min-height: 100vh;
-    }
-
-    .navbar {
-      background: linear-gradient(90deg, #4f46e5, #6366f1);
-    }
-
-    .navbar a {
-      color: white !important;
-      font-weight: 500;
-    }
-
-    .card {
-      border: none;
-      border-radius: 16px;
-    }
-  </style>
+  <title>{% block title %}Dev Blog{% endblock %}</title>
 </head>
+<body class="bg-light">
 
-<body>
+<div class="d-flex">
 
-<nav class="navbar navbar-expand-lg shadow-sm">
-  <div class="container">
-    <a class="navbar-brand text-white fw-bold" href="/">My Blog</a>
+    <!-- LEFT SIDEBAR -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <div style="display: flex; gap: 12px;">
-  <a href="{% url 'post_list' %}">Home</a>
-  <a href="{% url 'note_list' %}">Notes</a>
-  <a href="{% url 'about' %}">About</a>
-  <a href="/admin/">Admin</a>
-  </div>
+<style>
+    /* Professional Sidebar Styling */
+    .sidebar {
+        width: 260px;
+        min-height: 100vh;
+        background: #1e293b; /* Deep slate professional look */
+        color: #f8fafc;
+        transition: all 0.3s;
+        box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+        position: sticky;
+        top: 0;
+    }
 
-  </div>
-</nav>
+    .sidebar-header {
+        padding: 30px 20px;
+        text-align: center;
+        border-bottom: 1px solid #334155;
+    }
 
-<main class="container py-5">
-  {% block content %}{% endblock %}
-</main>
+    .sidebar-brand {
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: -1px;
+        color: #6366f1; /* Vibrant accent color */
+        text-decoration: none;
+    }
 
+    .nav-link {
+        color: #94a3b8 !important;
+        padding: 12px 20px !important;
+        margin: 4px 15px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 500;
+        transition: 0.2s all ease;
+    }
+
+    .nav-link:hover {
+        background: rgba(99, 102, 241, 0.1);
+        color: #6366f1 !important;
+    }
+
+    .nav-link.active {
+        background: #6366f1 !important;
+        color: white !important;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .nav-link i {
+        font-size: 1.2rem;
+    }
+
+    .sidebar-footer {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        padding: 0 15px;
+    }
+</style>
+
+<div class="d-flex">
+    <nav class="sidebar d-flex flex-column flex-shrink-0">
+        <div class="sidebar-header">
+            <a href="/" class="sidebar-brand">
+                <i class="bi bi-terminal-fill me-2"></i>DevSpace
+            </a>
+        </div>
+
+        <ul class="nav nav-pills flex-column mb-auto mt-3">
+            <li class="nav-item">
+                <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">
+                    <i class="bi bi-house-door"></i> Blog
+                </a>
+            </li>
+            <li>
+                <a href="/ai/" class="nav-link {% if '/ai/' in request.path %}active{% endif %}">
+                    <i class="bi bi-cpu"></i> AI Research
+                </a>
+            </li>
+            <li>
+                <a href="/study/" class="nav-link {% if '/study/' in request.path %}active{% endif %}">
+                    <i class="bi bi-book"></i> Study Plan
+                </a>
+            </li>
+            <li>
+                <a href="/projects/" class="nav-link {% if '/projects/' in request.path %}active{% endif %}">
+                    <i class="bi bi-kanban"></i> Projects
+                </a>
+            </li>
+            <li>
+                <a href="/notes/" class="nav-link {% if '/notes/' in request.path %}active{% endif %}">
+                    <i class="bi bi-sticky"></i> Notes
+                </a>
+            </li>
+            <li>
+                <a href="/contact/" class="nav-link {% if '/contact/' in request.path %}active{% endif %}">
+                    <i class="bi bi-envelope-at"></i> Contact
+                </a>
+            </li>
+            <li>
+                <a href="/about/" class="nav-link {% if '/about/' in request.path %}active{% endif %}">
+                    <i class="bi bi-envelope-at"></i> Contact
+                </a>
+            </li>
+        </ul>
+
+        <div class="sidebar-footer">
+            <div class="p-3 bg-dark rounded-3 text-center" style="font-size: 0.8rem;">
+                <p class="mb-0 text-secondary">© 2025 Dev Portfolio</p>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow-1 p-5 bg-white">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,11 +1,116 @@
 {% extends "blog/base.html" %}
-{% block title %}About - 나만의 블로그{% endblock %}
+{% block title %}About | Hsu Hsu{% endblock %}
 
 {% block content %}
-<h1class="h3 mb-3">소개</h1>
-<divclass="card shadow-sm">
-<divclass="card-body">
-<p>여기에 내 소개를 적어보자!</p>
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    .about-header {
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+        color: white;
+        padding: 60px 20px;
+        border-radius: 30px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .info-card {
+        border: none;
+        border-radius: 20px;
+        background: white;
+        transition: 0.3s;
+    }
+
+    .skill-badge {
+        display: inline-block;
+        padding: 8px 16px;
+        background: #f1f5f9;
+        color: #475569;
+        border-radius: 50px;
+        margin: 5px;
+        font-weight: 600;
+        font-size: 0.85rem;
+        transition: 0.3s;
+    }
+    .skill-badge:hover {
+        background: #e0e7ff;
+        color: #6366f1;
+        transform: translateY(-3px);
+    }
+
+    .social-icon {
+        font-size: 1.5rem;
+        color: #64748b;
+        margin: 0 10px;
+        transition: 0.3s;
+    }
+    .social-icon:hover { color: #6366f1; }
+
+    .about-img {
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+</style>
+
+<div class="container">
+    <div class="about-header">
+        <h1 class="display-5 fw-bold mb-2">Hello, I'm Hsu Hsu! 👋</h1>
+        <p class="lead opacity-75">Student, Creator, and Aspiring Django Developer</p>
+    </div>
+
+    <div class="row g-5">
+        <div class="col-md-5">
+            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600" 
+                 alt="Workspace" class="img-fluid about-img mb-4">
+            
+            <div class="card info-card shadow-sm p-4 text-center">
+                <h5 class="fw-bold mb-3">Let's Connect! 📩</h5>
+                <div class="d-flex justify-content-center">
+                    <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="bi bi-envelope-heart"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card info-card shadow-sm p-4 mb-4">
+                <h3 class="fw-bold text-primary mb-3">About Me 🧸</h3>
+                <p class="text-secondary" style="line-height: 1.8;">
+                    I am currently a student deeply passionate about <strong>Web Development</strong> and <strong>Artificial Intelligence</strong>. 
+                    My journey started with a curiosity about how the internet works, which led me to the world of Python and Django.
+                </p>
+                <p class="text-secondary" style="line-height: 1.8;">
+                    I built this blog to document my learning process—sharing the small victories and the messy mistakes. 
+                    When I'm not coding, you can find me studying new AI trends or working on my project gallery.
+                </p>
+            </div>
+
+            <div class="card info-card shadow-sm p-4">
+                <h3 class="fw-bold text-primary mb-3">My Toolbox 🛠️</h3>
+                <div class="mb-4">
+                    <h6 class="fw-bold text-muted small text-uppercase">Development</h6>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Django</span>
+                    <span class="skill-badge">HTML/CSS</span>
+                    <span class="skill-badge">Bootstrap 5</span>
+                    <span class="skill-badge">SQLite</span>
+                </div>
+                <div>
+                    <h6 class="fw-bold text-muted small text-uppercase">Interests</h6>
+                    <span class="skill-badge">AI Research</span>
+                    <span class="skill-badge">UI/UX Design</span>
+                    <span class="skill-badge">Open Source</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5 mb-5 p-4 bg-light rounded-4">
+        <p class="fst-italic text-muted mb-0">
+            "The best way to learn is to build and share." 🚀
+        </p>
+    </div>
 </div>
 {% endblock %}

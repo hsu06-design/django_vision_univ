@@ -1,38 +1,46 @@
 {% extends "blog/base.html" %}
-{% block title %}Contact - 나만의 블로그{% endblock %}
+
+{% block title %}Contact{% endblock %}
 
 {% block content %}
-<divclass="row justify-content-center">
-<divclass="col-lg-8">
+<div class="row justify-content-center">
+  <div class="col-md-7">
 
-<h1class="h3 mb-3">Contact</h1>
+    <div class="card shadow-sm border-0">
+      <div class="card-body p-4">
 
-<divclass="card shadow-sm">
-<divclass="card-body">
-<pclass="text-muted mb-4">
-          블로그에 대한 문의나 피드백은 아래로 연락해 주세요.
-</p>
+        <h2 class="mb-3 text-primary">📩 Contact Me</h2>
 
-<ulclass="list-group">
-<liclass="list-group-item">
-<strong>Email:</strong> your_email@example.com
-</li>
-<liclass="list-group-item">
-<strong>GitHub:</strong>
-<ahref="https://github.com/yourname"target="_blank">https://github.com/yourname</a>
-</li>
-<liclass="list-group-item">
-<strong>Instagram(선택):</strong>
-<ahref="https://instagram.com/yourname"target="_blank">https://instagram.com/yourname</a>
-</li>
-</ul>
+        <p class="text-muted">
+          Have a question, feedback, or just want to say hi?
+          Feel free to reach out.
+        </p>
 
-<divclass="mt-3">
-<aclass="btn btn-outline-secondary btn-sm"href="{% url 'post_list' %}">← Home</a>
-</div>
-</div>
-</div>
+        <hr>
 
-</div>
+        <ul class="list-group list-group-flush mb-3">
+          <li class="list-group-item">
+            <strong>Email:</strong> hsuwuttyeemin@gmail.com
+          </li>
+          <li class="list-group-item">
+            <strong>GitHub:</strong>
+            <a href="https://github.com/hsu06-design" target="_blank">
+              github.com/hsu06-design
+            </a>
+          </li>
+          <li class="list-group-item">
+            <strong>Instagram:</strong>
+            <a href="#" target="_blank">@8trwbrmonk3y</a>
+          </li>
+        </ul>
+
+        <a href="/" class="btn btn-outline-primary btn-sm">
+          ← Back to Blog
+        </a>
+
+      </div>
+    </div>
+
+  </div>
 </div>
 {% endblock %}

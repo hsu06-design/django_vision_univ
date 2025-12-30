@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+
+{% block title %}AI - Dev Blog{% endblock %}
+
+{% block content %}
+<div class="card mb-5 shadow border-0" style="background: #f8f9ff; border-radius: 15px;">
+    <div class="card-body p-4">
+        <h2 class="mb-3">🤖 AI Research Assistant</h2>
+        <div id="ai-chat-window" class="mb-3 p-3" style="height: 200px; background: white; border-radius: 10px; overflow-y: auto; border: 1px solid #e0e0e0;">
+            <p class="text-muted">Ask ChatGPT anything to search info...</p>
+        </div>
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search everything you want to know...">
+            <button class="btn btn-primary px-4">Search</button>
+        </div>
+    </div>
+</div>
+
+<hr class="my-5">
+
+<h2 class="mb-3">Latest AI Articles 📝</h2>
+
+{% for post in posts %}
+<div class="card mb-3 shadow-sm border-primary">
+  <div class="card-body">
+    <h3>{{ post.title }}</h3>
+    <p class="text-muted small mb-2">{{ post.created_at }}</p>
+    <p>{{ post.content|linebreaks }}</p>
+    <a href="{% url 'post_detail' post.id %}" class="btn btn-outline-primary btn-sm">Read More</a>
+  </div>
+</div>
+{% empty %}
+<div class="alert alert-info">No AI posts yet.</div>
+{% endfor %}
+{% endblock %}
