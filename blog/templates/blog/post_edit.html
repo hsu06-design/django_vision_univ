@@ -1,36 +1,115 @@
 {% extends "blog/base.html" %}
 
+{% block title %}Edit Post | DevSpace{% endblock %}
+
 {% block content %}
-<div style="
-    max-width:600px;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.1);
-">
+<style>
+    .edit-container {
+        max-width: 800px;
+        margin: 40px auto;
+        animation: fadeIn 0.5s ease;
+    }
 
-<h2 style="color:#2563eb;">✏️ Edit Post</h2>
+    .edit-card {
+        background: white;
+        border-radius: 24px;
+        padding: 40px;
+        border: none;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        border-top: 8px solid #6366f1;
+    }
 
-<form method="post">
-    {% csrf_token %}
+    .form-label {
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 8px;
+        display: block;
+        font-size: 0.95rem;
+    }
 
-    <input type="text" name="title" value="{{ post.title }}"
-           style="width:100%; padding:10px; margin-bottom:10px;">
+    .custom-input {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 12px;
+        border: 2px solid #f1f5f9;
+        background: #f8fafc;
+        transition: all 0.3s ease;
+        margin-bottom: 25px;
+        font-size: 1rem;
+    }
 
-    <textarea name="content"
-              style="width:100%; height:150px; padding:10px;">
-{{ post.content }}</textarea>
+    .custom-input:focus {
+        outline: none;
+        border-color: #6366f1;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    }
 
-    <button style="
-        margin-top:15px;
-        background:#2563eb;
-        color:white;
-        padding:10px 20px;
-        border:none;
-        border-radius:6px;
-    ">
-        Save Changes
-    </button>
-</form>
+    .btn-save {
+        background: #6366f1;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn-save:hover {
+        transform: translateY(-2px);
+        background: #4f46e5;
+    }
+
+    .btn-cancel {
+        color: #64748b;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 20px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="container edit-container">
+    <div class="edit-card">
+        <div class="mb-4">
+            <h2 class="fw-bold text-dark mb-1">Edit Post ✏️</h2>
+            <p class="text-muted small">Update your content for the project.</p>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label class="form-label">Post Title</label>
+                <input type="text" name="title" value="{{ post.title }}" 
+                       class="custom-input" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Content</label>
+                <textarea name="content" class="custom-input" rows="8" 
+                          required>{{ post.content }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Tags</label>
+                <input type="text" name="tags" value="{{ post.tags }}" 
+                       class="custom-input" placeholder="e.g. study, projects">
+            </div>
+
+            <div class="d-flex align-items-center mt-2">
+                <button type="submit" class="btn-save">
+                    💾 Save Changes
+                </button>
+                <a href="{% url 'post_list' %}" class="btn-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}

@@ -1,197 +1,73 @@
 {% extends "blog/base.html" %}
-
-{% block title %}Projects - Dev Portfolio{% endblock %}
+{% load static %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
-<style>
-    /* Professional Project Styling */
-    .project-header {
-        background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
-        color: white;
-        padding: 40px;
-        border-radius: 20px;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-
-    .upload-section {
-        border: 2px dashed #6366f1;
-        background: #f8f9ff;
-        border-radius: 15px;
-        padding: 40px;
-        transition: 0.3s;
-        text-align: center;
-        margin-bottom: 40px;
-        cursor: pointer;
-    }
-    .upload-section:hover {
-        background: #eff6ff;
-        border-color: #4f46e5;
-    }
-
-    /* Grid Layout */
-    .project-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 25px;
-    }
-
-    .project-card {
-        background: white;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid #e2e8f0;
-        transition: all 0.3s ease;
-        display: flex;
-        flex-direction: column;
-    }
-    .project-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-
-    .project-img-wrapper {
-        width: 100%;
-        height: 200px;
-        background: #f1f5f9;
-        overflow: hidden;
-        position: relative;
-    }
-    .project-img-wrapper img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .project-badge {
-        position: absolute;
-        top: 12px;
-        right: 12px;
-        background: #6366f1;
-        color: white;
-        padding: 4px 12px;
-        border-radius: 20px;
-        font-size: 0.7rem;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    .tech-tag {
-        font-size: 0.75rem;
-        padding: 3px 10px;
-        background: #f1f5f9;
-        color: #475569;
-        border-radius: 6px;
-        margin-right: 5px;
-        font-weight: 500;
-    }
-
-    .github-input-area {
-        background: #fffbeb;
-        border: 1px solid #fde68a;
-        font-size: 0.8rem;
-        padding: 5px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        width: 100%;
-    }
-</style>
-
-<div class="container mt-4">
-    <div class="project-header d-flex justify-content-between align-items-center">
-        <div>
-            <h1 class="fw-bold mb-1">Project Portfolio 💼</h1>
-            <p class="mb-0 opacity-75">Upload images and link your GitHub repositories.</p>
-        </div>
-        <button class="btn btn-light fw-bold px-4" onclick="document.getElementById('file-input').click()">
-            + New Project
-        </button>
-    </div>
-
-    <div class="upload-section" onclick="document.getElementById('file-input').click()">
-        <input type="file" id="file-input" hidden multiple onchange="addNewProject(event)">
-        <i class="bi bi-cloud-plus fs-1 text-primary"></i>
-        <h5 class="mt-3">Select Project Screenshots</h5>
-        <p class="text-muted">Photos will appear as clickable cards below</p>
-    </div>
-
-    <div class="project-grid" id="project-container">
-        
-        <div class="project-card">
-            <div class="project-img-wrapper">
-                <span class="project-badge">Live View</span>
-                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=500" alt="Code">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-9">
+            
+            <div class="text-center mb-5">
+                <h1 class="fw-bold display-4">Project Journey 🚀</h1>
+                <p class="text-muted fs-5">A behind-the-scenes look at how I build my applications.</p>
+                <hr class="w-25 mx-auto">
             </div>
-            <div class="card-body p-4 d-flex flex-direction-column justify-content-between">
-                <div>
-                    <h5 class="fw-bold">My Personal Blog</h5>
-                    <p class="text-muted small">A professional Django site with AI and Study integration.</p>
-                    <div class="mb-3">
-                        <span class="tech-tag">Django</span>
-                        <span class="tech-tag">Python</span>
+
+            <div class="project-card mb-5 pb-5">
+                <div class="d-flex justify-content-between align-items-end mb-3">
+                    <h2 class="fw-bold text-primary mb-0">01. My First Team Project 🤖</h2>
+                    <span class="badge bg-light text-dark border p-2">Dec 2025</span>
+                </div>
+                
+                <div class="mb-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9Yur9f6SL1URvdtZZxZhpGOfJinkeEuctIw&s" class="img-fluid rounded-4 shadow-sm border" alt="The First Team Project">
+                </div>
+
+                <div class="project-text">
+                    <h4 class="fw-bold">The Goal & Process:</h4>
+
+                    <p class="text-secondary" style="line-height: 1.8; font-size: 1.1rem;">
+                        This project focuses on preserving the serene atmosphere of the Hanok Village by monitoring and controlling pedestrian density. 
+                        Using sensors and real-time data processing, the system identifies overcrowded zones and suggests alternative routes to visitors.
+                    </p>
+                    <div class="mt-3">
+                        <span class="badge bg-dark px-3 py-2">#Django</span>
+                        <span class="badge bg-dark px-3 py-2">#Bootstrap5</span>
+                        <span class="badge bg-dark px-3 py-2">#Python</span>
                     </div>
                 </div>
-                <a href="https://github.com/hsu06-design/django_vision_univ" target="_blank" class="btn btn-dark w-100 d-flex align-items-center justify-content-center gap-2">
-                    <i class="bi bi-github"></i> View Project Detail
-                </a>
             </div>
-        </div>
+            <div class="project-card mb-5 pb-5 mt-5 border-top pt-5">
+                <div class="d-flex justify-content-between align-items-end mb-3">
+                    <h2 class="fw-bold text-primary mb-0">02. My Personal Blog 🎀</h2>
+                    <span class="badge bg-light text-dark border p-2">Dec 2025</span>
+                </div>
+                
+                <div class="mb-4">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVE2iXrIe-OpX-2RmdegJlRQuMetLghjhEBg&s" class="img-fluid rounded-4 shadow-sm border" alt="AI Dashboard">
+                </div>
 
+                <div class="project-text">
+                    <h4 class="fw-bold">The Process:</h4>
+                    <p class="text-secondary" style="line-height: 1.8; font-size: 1.1rem;">
+                        I wanted to create a space that felt like "MySpace" but for developers. 
+                        I started by designing the sidebar navigation and choosing a soft purple 
+                        theme to make it stand out.
+                    </p>
+                    <p class="text-secondary" style="line-height: 1.8; font-size: 1.1rem;">
+                        The biggest challenge was transitioning from a database-driven system 
+                        to this manual journal. I realized that writing my thoughts directly 
+                        into the code allowed me to explain the <strong>why</strong> behind 
+                        my code, not just the "what."
+                    </p>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 
-<script>
-    function addNewProject(event) {
-        const container = document.getElementById('project-container');
-        const files = event.target.files;
-
-        for (let file of files) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const newCard = `
-                    <div class="project-card">
-                        <div class="project-img-wrapper">
-                            <span class="project-badge" style="background: #10b981;">New Project</span>
-                            <img src="${e.target.result}" alt="Preview">
-                        </div>
-                        <div class="card-body p-4">
-                            <h5 class="fw-bold" contenteditable="true">Edit Project Title...</h5>
-                            <p class="text-muted small" contenteditable="true">Click here to add a description of what you built.</p>
-                            
-                            <label class="small fw-bold text-muted mt-2">GitHub URL:</label>
-                            <input type="text" class="github-input-area" placeholder="Paste GitHub link here..." oninput="updateLink(this)">
-                            
-                            <a href="https://github.com" target="_blank" class="btn btn-outline-dark w-100 d-flex align-items-center justify-content-center gap-2 github-btn">
-                                <i class="bi bi-github"></i> View Project Detail
-                            </a>
-                        </div>
-                    </div>
-                `;
-                container.insertAdjacentHTML('afterbegin', newCard);
-            };
-            reader.readAsDataURL(file);
-        }
-    }
-
-    // This function updates the button link live as you type the URL
-    function updateLink(input) {
-        const card = input.closest('.project-card');
-        const btn = card.querySelector('.github-btn');
-        btn.href = input.value || "https://github.com";
-    }
-</script>
-
-<div class="container mt-5 pt-5 border-top">
-    <h3 class="mb-4">Development Updates</h3>
-    {% for post in posts %}
-        <div class="card mb-3 border-0 shadow-sm p-2">
-            <div class="card-body">
-                <h6>{{ post.title }}</h6>
-                <p>{{ post.content|truncatewords:20 }}</p>
-            </div>
-        </div>
-    {% endfor %}
-</div>
+<style>
+    .project-card img { transition: transform 0.3s ease; }
+    .project-card img:hover { transform: scale(1.01); }
+</style>
 {% endblock %}

@@ -13,19 +13,16 @@ def post_edit(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     if request.method == "POST":
-        post.title = request.POST["title"]
-        post.content = request.POST["content"]
-        post.tags = request.POST["tags"]
+        # Using .get() provides a fallback if the HTML name is missing
+        post.title = request.POST.get("title", post.title)
+        post.content = request.POST.get("content", post.content)
+        post.tags = request.POST.get("tags", post.tags) 
+        
         post.save()
-        return redirect("post_list")
+        # Make sure this matches your URL name in urls.py
+        return redirect("post_list") 
 
-    return render(request, "blog/post_edit.html", {
-        "post": post
-    })
-
-def ai_home(request):
-    posts = Post.objects.filter(tags__icontains="ai").order_by("-created_at")
-    return render(request, "ai/ai_home.html", {"posts": posts})
+    return render(request, "blog/post_edit.html", {"post": post})
 
 def study_home(request):
     posts = Post.objects.filter(tags__icontains="study").order_by("-created_at")
