@@ -1,0 +1,139 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Smart Admin | Dashboard{% endblock %}
+
+{% block branding %}
+<div style="display: flex; align-items: center; gap: 10px;">
+    <div style="width: 32px; height: 32px; background: #6366f1; border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+        <span style="color: white; font-weight: bold; font-size: 1.2rem;">H</span>
+    </div>
+    <h1 style="color: #1e293b; font-weight: 800; font-family: 'Inter', sans-serif; font-size: 1.4rem; letter-spacing: -0.5px; margin: 0;">
+        Smart<span style="color: #6366f1;">Admin</span>
+    </h1>
+</div>
+{% endblock %}
+
+{% block extrahead %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+    /* 1. LAYOUT & BACKGROUND */
+    :root {
+        --p-color: #6366f1; /* Smart Indigo */
+        --bg-color: #f4f7fe;
+        --text-dark: #0f172a;
+        --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    body {
+        font-family: 'Inter', sans-serif !important;
+        background-color: var(--bg-color) !important;
+        color: var(--text-dark) !important;
+    }
+
+    /* 2. SMART HEADER (Glassmorphism) */
+    #header {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px) !important;
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+        color: var(--text-dark) !important;
+        padding: 12px 40px !important;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    #header a { color: #475569 !important; font-weight: 600 !important; }
+    #header a:hover { color: var(--p-color) !important; }
+
+    /* 3. SIDEBAR REDESIGN */
+    #nav-sidebar {
+        background: #ffffff !important;
+        border-right: 1px solid #e2e8f0 !important;
+        padding-top: 20px;
+    }
+
+    .nav-sidebar .module th {
+        background: none !important;
+        color: #94a3b8 !important;
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-sidebar .section a {
+        border-radius: 10px;
+        margin: 2px 10px;
+        color: #475569 !important;
+        transition: 0.2s;
+        font-weight: 500;
+    }
+
+    .nav-sidebar .section a:hover {
+        background: #f1f5f9 !important;
+        color: var(--p-color) !important;
+    }
+
+    /* 4. SMART CARDS (Modules) */
+    .module {
+        background: #ffffff !important;
+        border: none !important;
+        border-radius: 16px !important;
+        box-shadow: var(--card-shadow) !important;
+        margin-bottom: 30px !important;
+        overflow: hidden;
+    }
+
+    .module h2 {
+        background: #ffffff !important;
+        color: var(--text-dark) !important;
+        font-weight: 700 !important;
+        padding: 20px !important;
+        border-bottom: 1px solid #f1f5f9 !important;
+        font-size: 1rem !important;
+    }
+
+    /* 5. INPUTS & FORMS */
+    input[type=text], input[type=password], textarea, select {
+        border: 1px solid #e2e8f0 !important;
+        border-radius: 10px !important;
+        padding: 10px 14px !important;
+        background: #f8fafc !important;
+        transition: 0.3s;
+        color: var(--text-dark) !important;
+    }
+
+    input:focus {
+        border-color: var(--p-color) !important;
+        background: #ffffff !important;
+        box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1) !important;
+        outline: none;
+    }
+
+    /* 6. PRIMARY BUTTON */
+    .button, input[type=submit] {
+        background: var(--p-color) !important;
+        padding: 12px 24px !important;
+        border-radius: 10px !important;
+        font-weight: 700 !important;
+        border: none !important;
+        box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2) !important;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background: #4f46e5 !important;
+        transform: translateY(-1px);
+    }
+
+    /* 7. DATA TABLES */
+    .results table thead th {
+        background: #f8fafc !important;
+        color: #64748b !important;
+        font-weight: 700;
+        border-bottom: 2px solid #f1f5f9;
+    }
+
+    tr.row1 { background: #ffffff !important; }
+    tr.row2 { background: #fafafa !important; }
+</style>
+{% endblock %}

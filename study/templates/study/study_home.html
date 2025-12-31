@@ -12,21 +12,67 @@
     .timeline { background: white; border-radius: 15px; border: 1px solid #e9ecef; overflow: hidden; }
     .timeline-header { background: #4ade80; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
     
-    .time-slot { display: grid; grid-template-columns: 80px 1fr; border-bottom: 1px solid #f1f5f9; min-height: 60px; }
-    .time-label { padding: 10px; font-size: 0.8rem; color: #64748b; border-right: 1px solid #f1f5f9; background: #fcfcfc; }
-    .task-area { padding: 5px; position: relative; }
+    .time-slot { display: grid; grid-template-columns: 100px 1fr; border-bottom: 1px solid #f1f5f9; min-height: 70px; transition: 0.3s; }
+    .time-label { padding: 15px 10px; font-size: 0.85rem; color: #64748b; border-right: 1px solid #f1f5f9; background: #fcfcfc; font-weight: 600; }
+    .task-area { padding: 10px; position: relative; display: flex; align-items: center; }
     
     /* Task Cards */
-    .task-card { background: #ecfdf5; border: 1px solid #a7f3d0; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; color: #065f46; display: flex; justify-content: space-between; align-items: center; }
-    .status-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; background: #059669; color: white; }
+    .task-card { 
+        width: 100%;
+        background: #f8fafc; 
+        border: 1px solid #e2e8f0; 
+        padding: 10px 15px; 
+        border-radius: 10px; 
+        font-size: 0.9rem; 
+        color: #475569; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center;
+    }
+
+    .status-badge { 
+        font-size: 0.75rem; 
+        padding: 4px 10px; 
+        border-radius: 20px; 
+        background: #94a3b8; 
+        color: white; 
+        margin-right: 10px; 
+        cursor: pointer; 
+        user-select: none;
+        transition: 0.2s;
+        font-weight: 600;
+    }
     
-    .editable:focus { outline: none; background: #fffbeb; border-radius: 4px; }
+    /* Delete Button */
+    .btn-delete { 
+        background: #fee2e2; 
+        color: #ef4444; 
+        border: none; 
+        border-radius: 50%; 
+        width: 26px; 
+        height: 26px; 
+        font-size: 14px; 
+        cursor: pointer; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center;
+        transition: 0.2s;
+        margin-left: 10px;
+    }
+    .btn-delete:hover { background: #ef4444; color: white; transform: scale(1.1); }
+
+    .editable:focus { outline: none; background: #fffbeb; border-radius: 4px; padding: 2px 4px; }
+
+    @keyframes slideIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Study Dashboard 📚</h2>
-        <button class="btn btn-success btn-sm" onclick="addTask()">+ Add Session</button>
+        <button class="btn btn-success shadow-sm" onclick="addTask()">+ Add Session</button>
     </div>
 
     <div class="study-container">
@@ -36,50 +82,26 @@
             <div class="goal-item" contenteditable="true">AI Research Paper</div>
             <div class="goal-item" contenteditable="true">Read 20 pages</div>
             <hr>
-            <small class="text-muted">Tip: Click to edit goals</small>
+            <small class="text-muted">Tip: Click status to change color, click text to edit!</small>
         </div>
 
         <div class="timeline">
             <div class="timeline-header">
-                <span id="current-date">Today's Schedule</span>
-                <span class="badge bg-light text-dark">December 30, 2025</span>
+                <span class="fw-bold">Today's Schedule</span>
+                <span class="badge bg-light text-dark" contenteditable="true">December 31, 2025</span>
             </div>
 
             <div id="schedule-list">
                 <div class="time-slot">
-                    <div class="time-label">08:00 AM</div>
+                    <div class="time-label">09:00 AM</div>
                     <div class="task-area">
                         <div class="task-card">
-                            <span class="editable" contenteditable="true">Morning Review & Coffee ☕</span>
-                            <span class="status-badge">Done</span>
+                            <div>
+                                <span class="status-badge" onclick="toggleStatus(this)">New</span>
+                                <span class="editable" contenteditable="true">Ready to start studying... ✍️</span>
+                            </div>
+                            <button class="btn-delete" onclick="deleteTask(this)">×</button>
                         </div>
-                    </div>
-                </div>
-
-                <div class="time-slot">
-                    <div class="time-label">10:00 AM</div>
-                    <div class="task-area">
-                        <div class="task-card" style="background: #eff6ff; border-color: #bfdbfe; color: #1e40af;">
-                            <span class="editable" contenteditable="true">Deep Work: Coding 💻</span>
-                            <span class="status-badge" style="background: #2563eb;">In Progress</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="time-slot">
-                    <div class="time-label">01:00 PM</div>
-                    <div class="task-area">
-                        <div class="task-card" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
-                            <span class="editable" contenteditable="true">Lunch Break 🍎</span>
-                            <span class="status-badge" style="background: #dc2626;">Pending</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="time-slot">
-                    <div class="time-label">03:00 PM</div>
-                    <div class="task-area p-2">
-                        <small class="text-muted editable" contenteditable="true" onclick="this.innerHTML=''">+ Add task...</small>
                     </div>
                 </div>
             </div>
@@ -87,27 +109,65 @@
     </div>
 </div>
 
-<hr class="my-5">
-
-<h4 class="mb-3">Study Resources & Notes</h4>
-{% for post in posts %}
-    {% endfor %}
-
 <script>
+    // 1. Function to switch status manually (Click-to-Toggle)
+    function toggleStatus(badge) {
+        const currentStatus = badge.innerText;
+        const card = badge.closest('.task-card');
+
+        if (currentStatus === "New") {
+            badge.innerText = "In Progress ⚡";
+            badge.style.background = "#2563eb"; // Blue
+            card.style.background = "#eff6ff";
+            card.style.borderColor = "#bfdbfe";
+        } else if (currentStatus === "In Progress ⚡") {
+            badge.innerText = "Done ✅";
+            badge.style.background = "#059669"; // Green
+            card.style.background = "#ecfdf5";
+            card.style.borderColor = "#a7f3d0";
+        } else {
+            badge.innerText = "New";
+            badge.style.background = "#94a3b8"; // Gray
+            card.style.background = "#f8fafc";
+            card.style.borderColor = "#e2e8f0";
+        }
+    }
+
+    // 2. Function to add a new slot to the timetable
     function addTask() {
-        const list = document.getElementById('schedule-list');
-        const newSlot = `
-            <div class="time-slot">
-                <div class="time-label">New Slot</div>
-                <div class="task-area p-2">
-                    <div class="task-card" style="background: #fdf2f8; border-color: #fbcfe8; color: #9d174d;">
-                        <span class="editable" contenteditable="true">New Study Session...</span>
-                        <span class="status-badge" style="background: #db2777;">New</span>
+        const time = prompt("What time? (e.g., 11:30 AM)", "11:00 AM");
+        const task = prompt("What's the plan?", "Coding session...");
+        
+        if (time && task) {
+            const list = document.getElementById('schedule-list');
+            const newSlot = `
+                <div class="time-slot" style="animation: slideIn 0.4s ease forwards;">
+                    <div class="time-label">${time}</div>
+                    <div class="task-area">
+                        <div class="task-card">
+                            <div>
+                                <span class="status-badge" onclick="toggleStatus(this)">New</span>
+                                <span class="editable" contenteditable="true">${task}</span>
+                            </div>
+                            <button class="btn-delete" onclick="deleteTask(this)">×</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `;
-        list.insertAdjacentHTML('beforeend', newSlot);
+            `;
+            list.insertAdjacentHTML('beforeend', newSlot);
+        }
+    }
+
+    // 3. Function to delete a slot
+    function deleteTask(button) {
+        if (confirm("Remove this session?")) {
+            const slot = button.closest('.time-slot');
+            slot.style.opacity = '0';
+            slot.style.transform = 'translateX(20px)';
+            setTimeout(() => {
+                slot.remove();
+            }, 300);
+        }
     }
 </script>
 {% endblock %}
